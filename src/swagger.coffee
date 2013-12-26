@@ -211,6 +211,7 @@ class SwaggerResource
     # We're going to store models in a map (models) and a list (modelsArray)
     @modelsArray = []
     @models = {}
+    @rawModels = {}
 
     if resourceObj.apis? and @api.resourcePath?
       # read resource directly from operations object
@@ -307,6 +308,7 @@ class SwaggerResource
           swaggerModel = new SwaggerModel(modelName, models[modelName])
           @modelsArray.push swaggerModel
           @models[modelName] = swaggerModel
+          @rawModels[modelName] = models[modelName];
       for model in @modelsArray
         model.setReferencedModels(@models)
 
